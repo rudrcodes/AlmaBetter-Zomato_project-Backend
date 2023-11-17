@@ -106,7 +106,8 @@ app.post("/addDish", (req, res) => {
 });
 
 app.get("/allOrders", (req, res) => {
-  let sqlQuery = "SELECT * FROM Orders";
+  let sqlQuery = "select * from orders";
+  // let sqlQuery = "SELECT * FROM Orders";
   db.query(sqlQuery, (err, data) => {
     if (err) {
       console.log("Error : ", err);
@@ -116,6 +117,19 @@ app.get("/allOrders", (req, res) => {
     }
   });
 });
+app.get("/someOrders", (req, res) => {
+  let sqlQuery = "select * from orders limit 6 offset 0";
+  // let sqlQuery = "SELECT * FROM Orders";
+  db.query(sqlQuery, (err, data) => {
+    if (err) {
+      console.log("Error : ", err);
+      res.json(err);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 
 app.delete("/deleteOrder/:id", (req, res) => {
   console.log("Delete Endpoint : ", req.params);
@@ -150,22 +164,22 @@ app.delete("/deleteOrder/:id", (req, res) => {
 //   );
 // });
 
-// app.get("/api/orders/:lim/:off", (req, res) => {
-//   connection.query(
-//     "select * from orders limit " +
-//       req.params.lim +
-//       " offset " +
-//       req.params.off,
-//     (err, result, next) => {
-//       if (err) {
-//         res.status(400).json({ message: "400 bad request" });
-//         next();
-//       } else {
-//         res.status(200).json(result);
-//       }
-//     }
-//   );
-// });
+app.get("/orders/:lim/:off", (req, res) => {
+  connection.query(
+    "select * from orders limit " +
+      req.params.lim +
+      " offset " +
+      req.params.off,
+    (err, result, next) => {
+      if (err) {
+        res.status(400).json({ message: "400 bad request" });
+        next();
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+});
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
