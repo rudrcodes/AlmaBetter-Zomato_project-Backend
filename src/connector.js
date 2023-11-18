@@ -15,16 +15,23 @@ console.log(process.env.MYSQL_DATABASE);
 // });
 
 var con = mysql.createConnection({
-  host: "localhost",
-  // host: process.env.MYSQL_HOST,
-  user: "root",
-  // user: process.env.MYSQL_USER,
-  password: "rudr1234@nsh",
-  // password: process.env.MYSQL_PASSWORD,
-  database: "test",
-  // database: process.env.MYSQL_DATABASE,
+  host: "4ms.h.filess.io",
+  user: "ZomatoProject_stemslady",
+  password: "eb8acaddad6248fb0076e5c61ada69c9deb7cade",
+  database: "ZomatoProject_stemslady",
+  //* If you will not use this port it won't connect , so make sure to use the port !!
+  port: "3307",
   multipleStatements: true,
 });
+
+
+// var con = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "rudr1234@nsh",
+//   database: "test",
+//   multipleStatements: true,
+// });
 
 con.connect(function (err) {
   if (err)
