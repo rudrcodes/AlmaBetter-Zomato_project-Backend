@@ -16,7 +16,7 @@ let a = async (err) => {
 
     await new Promise((resolve, reject) => {
       con.query(
-        "CREATE TABLE orders(_id varchar(200),title varchar(100),description varchar(1000) )",
+        "CREATE TABLE orders(_id varchar(200),image varchar(300),title varchar(100),description varchar(1000) )",
         (err) => {
           if (err) reject(err);
           else resolve(1);
@@ -25,7 +25,7 @@ let a = async (err) => {
     });
     await new Promise((resolve, reject) => {
       con.query(
-        "CREATE TABLE myOrders (_id varchar(200), title varchar(100),quantity INT NOT NULL,dateMade VARCHAR(100) NOT NULL);",
+        "CREATE TABLE myOrders (_id varchar(200),image varchar(300), title varchar(100),quantity INT NOT NULL,dateMade VARCHAR(100) NOT NULL);",
         (err) => {
           if (err) reject(err);
           else resolve(1);
@@ -37,7 +37,7 @@ let a = async (err) => {
     for (let i = 0; i < data.length; i++)
       await new Promise((resolve, reject) => {
         con.query(
-          `INSERT into orders values("${data[i]._id}","${data[i].title}","${data[i].description}")`,
+          `INSERT into orders values("${data[i]._id}","${data[i].image}","${data[i].title}","${data[i].description}")`,
           (err) => {
             if (err) reject(err);
             else {
